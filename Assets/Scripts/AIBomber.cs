@@ -9,6 +9,7 @@ public class AIBomber : MonoBehaviour
     public EncounterManager encounterManager;
     public Animator bomberAnimator;
     public NavMeshAgent bomberAgent;
+    public GameObject explosion;
     public float explodeDistance = 2.0f;
     bool ActorTriggered = false;
 
@@ -45,5 +46,9 @@ public class AIBomber : MonoBehaviour
     public void PlayerSpotted(){
         ActorTriggered = true;
         bomberAnimator.SetTrigger("PlayerSpotted");
+    }
+
+    public void BomberExplode(){
+        Instantiate(explosion, transform.position, Quaternion.identity);
     }
 }
