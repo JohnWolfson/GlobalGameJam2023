@@ -35,4 +35,8 @@ public class AIMortor : MonoBehaviour
             }
         }
     }
+
+    public void TakeDamage(int damage){
+        
+    }
 }

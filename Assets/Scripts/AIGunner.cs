@@ -26,7 +26,7 @@ public class AIGunner : MonoBehaviour
     void Update()
     {
         if(Vector3.Distance(player.position, transform.position) < spotDistance){
-            if (!Physics.Linecast(transform.position, player.position))
+            if (Physics.Linecast(transform.position, player.position))
             {
                 if(ActorTriggered){
                     encounterManager.playerLastSeenPos = player.position;
@@ -35,6 +35,26 @@ public class AIGunner : MonoBehaviour
                     encounterManager.playerLastSeenPos = player.position;
                 }
             }
+        }
+
+        if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            gunnerAgent.isStopped = true;
+        }
+
+        if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Running"))
+        {
+            gunnerAgent.isStopped = false;
+        }
+
+        if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("InCover"))
+        {
+            gunnerAgent.isStopped = true;
+        }
+
+        if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Shooting"))
+        {
+            gunnerAgent.isStopped = true;
         }
     }
 
@@ -45,5 +65,9 @@ public class AIGunner : MonoBehaviour
 
     public void GiveCoveringFire(){
 
+    }
+
+    public void TakeDamage(int damage){
+        
     }
 }

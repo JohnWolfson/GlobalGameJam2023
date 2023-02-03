@@ -11,7 +11,7 @@ public class AIShield : MonoBehaviour
     public NavMeshAgent shieldAgent;
     public GameObject corpse;
     public float spotDistance;
-    Transform player;
+    public Transform player;
     bool ActorTriggered = false;
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class AIShield : MonoBehaviour
     void Update()
     {
         if(Vector3.Distance(player.position, transform.position) < spotDistance){
-            if (!Physics.Linecast(transform.position, player.position))
+            if (Physics.Linecast(transform.position, player.position))
             {
                 if(ActorTriggered){
                     encounterManager.playerLastSeenPos = player.position;
@@ -49,6 +49,10 @@ public class AIShield : MonoBehaviour
     }
 
     public void GiveCoveringFire(){
+        
+    }
+
+    public void TakeDamage(int damage){
         
     }
 }

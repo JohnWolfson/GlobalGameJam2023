@@ -49,6 +49,11 @@ public class AIBomber : MonoBehaviour
     }
 
     public void BomberExplode(){
+        Destroy(this.gameObject);
         Instantiate(explosion, transform.position, Quaternion.identity);
+    }
+
+    public void TakeDamage(int damage){
+        
     }
 }

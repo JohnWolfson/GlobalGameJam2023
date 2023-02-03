@@ -7,8 +7,8 @@ using UnityEngine.AI;
 public class EncounterManager : MonoBehaviour
 {
     public Vector3 playerLastSeenPos;
-    public UnityEvent coveringFireActors;
     public UnityEvent playerSpottedActors;
+    public UnityEvent coveringFireActors;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +22,13 @@ public class EncounterManager : MonoBehaviour
         
     }
 
-    public void CoveringFire()
-    {
-        coveringFireActors.Invoke();
-    }
-
     public void PlayerSpotted()
     {
         playerSpottedActors.Invoke();
+    }
+
+    public void CoveringFire()
+    {
+        coveringFireActors.Invoke();
     }
 }
