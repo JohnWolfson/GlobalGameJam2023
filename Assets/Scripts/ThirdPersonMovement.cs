@@ -27,7 +27,10 @@ public class ThirdPersonMovement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical"); 
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized; 
         velocity.y += gravity * Time.deltaTime; 
-        //if(Input.GetButtonDown)
+        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        {
+            velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+        }
 
         if(direction.magnitude >= 0.1f)
         {
