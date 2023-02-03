@@ -18,6 +18,8 @@ public class AIShield : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        encounterManager.playerSpottedActors.AddListener(PlayerSpotted);
+        encounterManager.coveringFireActors.AddListener(GiveCoveringFire);
     }
 
     // Update is called once per frame
@@ -34,6 +36,16 @@ public class AIShield : MonoBehaviour
                 }
             }
         }
+
+        if (shieldAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            shieldAgent.isStopped = true;
+        }
+    }
+
+    public void PlayerSpotted(){
+        ActorTriggered = true;
+        shieldAnimator.SetTrigger("PlayerSpotted");
     }
 
     public void GiveCoveringFire(){
