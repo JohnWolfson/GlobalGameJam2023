@@ -16,7 +16,7 @@ public class AIBomber : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        encounterManager.playerSpottedActors.AddListener(PlayerSpotted);
     }
 
     // Update is called once per frame
