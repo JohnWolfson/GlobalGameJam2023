@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rockman Grey
+  m_Name: Flowing Lava
   m_Shader: {fileID: 4800000, guid: d94b9d961c9c0974f9f979803c2d5961, type: 3}
   m_ShaderKeywords: _ADDITIONAL_LIGHTS_ENABLED _ENVIRONMENT_LIGHTING_ENABLED _FOG
     _ZWRITE_ON
@@ -45,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9d7bd31c40be87941b75ca19d53124f1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 563c2a0704a18354db324c078ff434a2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -82,7 +82,7 @@ Material:
     - _FresnelSmoothness: 0.1
     - _FresnelThickness: 0.45
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 3.35
     - _GlossyReflections: 1
     - _MaxDistance: 3
     - _Metallic: 0
@@ -100,8 +100,8 @@ Material:
     - _ReflectionProbes: 0
     - _ReflectionSmoothness: 0.5
     - _Reflections: 0
-    - _RimAmount: 0.245
-    - _RimThreshold: 0.114
+    - _RimAmount: 0.601
+    - _RimThreshold: 0.384
     - _ShadowMask: 0
     - _SmoothnessTextureChannel: 0
     - _Specular: 0
@@ -116,12 +116,12 @@ Material:
     - _VertexColor: 0
     - _ZWrite: 1
     m_Colors:
-    - _AmbientColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+    - _AmbientColor: {r: 2, g: 0.7137255, b: 0.7137255, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+    - _Color: {r: 1, g: 0.44954127, b: 0.25, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+    - _RimColor: {r: 1, g: 0.9103298, b: 0.6650944, a: 1}
     - _ShadowTint: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecularColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+    - _SpecularColor: {r: 1, g: 0.9264633, b: 0.75, a: 1}
     - i_BaseColor: {r: 1, g: 1, b: 1, a: 1}

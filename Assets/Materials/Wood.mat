@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rockman Grey
+  m_Name: Wood
   m_Shader: {fileID: 4800000, guid: d94b9d961c9c0974f9f979803c2d5961, type: 3}
   m_ShaderKeywords: _ADDITIONAL_LIGHTS_ENABLED _ENVIRONMENT_LIGHTING_ENABLED _FOG
     _ZWRITE_ON
@@ -100,8 +100,8 @@ Material:
     - _ReflectionProbes: 0
     - _ReflectionSmoothness: 0.5
     - _Reflections: 0
-    - _RimAmount: 0.245
-    - _RimThreshold: 0.114
+    - _RimAmount: 0.523
+    - _RimThreshold: 0.313
     - _ShadowMask: 0
     - _SmoothnessTextureChannel: 0
     - _Specular: 0
@@ -116,12 +116,12 @@ Material:
     - _VertexColor: 0
     - _ZWrite: 1
     m_Colors:
-    - _AmbientColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+    - _AmbientColor: {r: 0.509434, g: 0.18022428, b: 0.18022428, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+    - _Color: {r: 0.3962264, g: 0.2028114, b: 0.13269848, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
+    - _RimColor: {r: 0.41509432, g: 0.10926285, b: 0.045033827, a: 1}
     - _ShadowTint: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecularColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+    - _SpecularColor: {r: 0.3301887, g: 0.12271291, b: 0.079432175, a: 1}
     - i_BaseColor: {r: 1, g: 1, b: 1, a: 1}

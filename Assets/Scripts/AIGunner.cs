@@ -70,7 +70,7 @@ public class AIGunner : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(lookPos);
         }
 
-        if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+        if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             gunnerAgent.isStopped = true;
         }
