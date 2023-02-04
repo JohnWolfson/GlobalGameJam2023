@@ -533,6 +533,7 @@ MonoBehaviour:
   explosion: {fileID: 9223272805706646985, guid: 86b9c9cfadaf3b74598fabfffb561de7,
     type: 3}
   explodeDistance: 1.5
+  health: 50
 --- !u!135 &416979849
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -742,7 +743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493105369}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.6545677, y: -3.9574966, z: 12.896772}
+  m_LocalPosition: {x: 6.6545677, y: -5.25, z: 12.896772}
   m_LocalScale: {x: 5.11, y: 2.75415, z: 20.716452}
   m_Children: []
   m_Father: {fileID: 1030445357}
@@ -843,6 +844,7 @@ MonoBehaviour:
   mortarAgent: {fileID: 525054754}
   corpse: {fileID: 0}
   spotDistance: 15
+  health: 100
   forceGoToWaypointOnWake: 1
   waypointToForce: {fileID: 1751032327}
   mortarLaunchPoint: {fileID: 660710883}
@@ -866,6 +868,7 @@ MonoBehaviour:
   gunParticles: {fileID: 0}
   corpse: {fileID: 0}
   spotDistance: 50
+  health: 150
   forceGoToWaypointOnWake: 1
   waypointToForce: {fileID: 1429010348}
 --- !u!23 &525054757
@@ -922,8 +925,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525054751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.81, y: 1.569, z: 20.68}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 21.81, y: 1.02, z: 20.68}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1634371826}
   m_Father: {fileID: 0}
@@ -1015,7 +1018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555626024}
   m_LocalRotation: {x: -0, y: 0.36360466, z: -0, w: 0.9315534}
-  m_LocalPosition: {x: 6.4845676, y: -3.9574966, z: -9.9732275}
+  m_LocalPosition: {x: 6.4845676, y: -5.25, z: -9.9732275}
   m_LocalScale: {x: 8.9465885, y: 2.75415, z: 12.228094}
   m_Children: []
   m_Father: {fileID: 1030445357}
@@ -2598,6 +2601,7 @@ GameObject:
   - component: {fileID: 1568250475}
   - component: {fileID: 1568250473}
   - component: {fileID: 1568250474}
+  - component: {fileID: 1568250476}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -3233,7 +3237,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 10.39
+    angle: 1.79
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -3438,7 +3442,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6309,7 +6313,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -7340,6 +7344,19 @@ Transform:
   m_Father: {fileID: 843235055}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1568250476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568250472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7894f9382b033374e9d3d1bbb557a14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
 --- !u!1 &1617221367
 GameObject:
   m_ObjectHideFlags: 0
@@ -7456,7 +7473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626521990}
   m_LocalRotation: {x: -0, y: -0.28313679, z: -0, w: 0.95907956}
-  m_LocalPosition: {x: -22.455433, y: -3.9574966, z: 0.4267726}
+  m_LocalPosition: {x: -22.455433, y: -5.25, z: 0.4267726}
   m_LocalScale: {x: 5.11, y: 2.75415, z: 20.716455}
   m_Children: []
   m_Father: {fileID: 1030445357}
@@ -7679,6 +7696,7 @@ MonoBehaviour:
   gunParticles: {fileID: 1568250473}
   corpse: {fileID: 0}
   spotDistance: 50
+  health: 150
   forceGoToWaypointOnWake: 1
   waypointToForce: {fileID: 1429010348}
 --- !u!23 &1914348548
@@ -7735,8 +7753,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914348543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.53, y: 1.569, z: 12.82}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 1.07, y: 1.569, z: 9.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1433842646}
   m_Father: {fileID: 0}
@@ -7772,3 +7790,72 @@ Transform:
   m_Father: {fileID: 381050587}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6076499705062505309
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.396
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.811
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.469
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648411906239039433, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9223272805706646985, guid: 86b9c9cfadaf3b74598fabfffb561de7,
+        type: 3}
+      propertyPath: m_Name
+      value: Bomber Explosion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86b9c9cfadaf3b74598fabfffb561de7, type: 3}
