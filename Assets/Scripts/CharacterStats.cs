@@ -21,7 +21,7 @@ public class CharacterStats : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Ammo > 0 && CanFire)
+        if (Input.GetMouseButton(0) && Ammo > 0 && CanFire)
         {
             CanFire = false;
             animator.SetTrigger("Fire");
@@ -30,13 +30,13 @@ public class CharacterStats : MonoBehaviour
 
     private void fireWeapon()
     {
+        Ammo -= 1;
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
         RaycastHit hit;
         Vector3 spreadVector = getSpreadVector();
         Debug.DrawRay(transform.position, spreadVector * 100, Color.red, 600);
         if (Physics.Raycast(transform.position, spreadVector, out hit, 10000f, layerMask))
-        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10000f, layerMask))
         {
             switch (hit.transform.tag)
             {
