@@ -12,6 +12,7 @@ public class AIGunner : MonoBehaviour
     public ParticleSystem gunParticles;
     public GameObject corpse;
     public float spotDistance = 15.0f;
+    public int health = 150;
     public bool forceGoToWaypointOnWake = true;
     public Transform waypointToForce;
     Transform player;
@@ -101,6 +102,11 @@ public class AIGunner : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
-        
+        health -= damage;
+        if(health <= 0){
+            encounterManager.playerSpottedActors.RemoveListener(PlayerSpotted);
+            encounterManager.coveringFireActors.RemoveListener(GiveCoveringFire);
+            gunnerAnimator.SetTrigger("Died");
+        }
     }
 }

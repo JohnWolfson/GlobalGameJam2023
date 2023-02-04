@@ -11,6 +11,7 @@ public class AIMortor : MonoBehaviour
     public NavMeshAgent mortarAgent;
     public GameObject corpse;
     public float spotDistance = 15.0f;
+    public int health = 100;
     public bool forceGoToWaypointOnWake = true;
     public Transform waypointToForce;
     public Transform mortarLaunchPoint;
@@ -105,6 +106,11 @@ public class AIMortor : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
-        
+        health -= damage;
+        if(health <= 0){
+            encounterManager.playerSpottedActors.RemoveListener(PlayerSpotted);
+            encounterManager.coveringFireActors.RemoveListener(GiveCoveringFire);
+            mortarAnimator.SetTrigger("Died");
+        }
     }
 }
