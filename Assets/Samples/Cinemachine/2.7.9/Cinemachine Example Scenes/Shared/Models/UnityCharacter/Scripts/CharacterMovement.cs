@@ -8,6 +8,7 @@ namespace Cinemachine.Examples
 [AddComponentMenu("")] // Don't display in add component menu
 public class CharacterMovement : MonoBehaviour
 {
+    /*
     public bool useCharacterForward = false;
     public bool lockToCameraForward = false;
     public float turnSpeed = 10f;
@@ -115,7 +116,36 @@ public class CharacterMovement : MonoBehaviour
             var right = transform.TransformDirection(Vector3.right);
             targetDirection = input.x * right + Mathf.Abs(input.y) * forward;
         }
+    }*/
+    public CharacterController controller; 
+    public float mouseSens = 100f; 
+    public Transform playerBody; 
+    float xRotation = 0f; 
+    public float speed = 12f; 
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked; 
+    }
+
+    void Update()
+    {
+        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSens * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSens * Time.deltaTime;
+
+        xRotation -= mouseY; 
+        //transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.Rotate(Vector3.up * (mouseY + mouseX)); 
+        
+
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxisRaw("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z; 
+        controller.Move(move* speed * Time.deltaTime); 
     }
 }
+
+
 
 }
