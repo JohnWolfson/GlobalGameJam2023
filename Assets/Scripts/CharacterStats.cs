@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
 {
+    [Header("Mechanics")]
     public Animator animator;
     public ParticleSystem particles; // Particle System use for firing
     public int MaxHP; // Player max health
@@ -14,9 +16,15 @@ public class CharacterStats : MonoBehaviour
     public float Accuracy; // The higher this is, the lower the accuracy
     public bool CanFire; // If the player has finished the current firing animation to fire again
 
+    [Header("UI")]
+    public Text AmmoText;
+    public Image HealthBar;
+
     void Start()
     {
         CanFire = true;
+        updateAmmoText();
+        updateHealthBar();
     }
 
     void Update()
@@ -28,9 +36,23 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    #region UI
+
+    private void updateAmmoText()
+    {
+        AmmoText.text = "Ammo: " + Ammo;
+    }
+
+    private void updateHealthBar()
+    {
+        float fill = (float)HP / (float)MaxHP;
+        HealthBar.fillAmount = fill;
+    }
+
+    #endregion
+
     private void fireWeapon()
     {
-        Ammo -= 1;
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
         RaycastHit hit;
@@ -57,6 +79,8 @@ public class CharacterStats : MonoBehaviour
                     break;
             }
         }
+        Ammo -= 1;
+        updateAmmoText();
     }
 
     private Vector3 getSpreadVector()
@@ -75,9 +99,20 @@ public class CharacterStats : MonoBehaviour
         CanFire = true;
     }
 
+    public bool RecoverHealth(int recovery)
+    {
+        if (HP >= MaxHP)
+            return false;
+        HP += recovery;
+        if (HP > MaxHP)
+            HP = MaxHP;
+        return true;
+    }
+
     public void TakeDamage(int damage)
     {
         HP -= damage;
+        updateHealthBar();
         if (HP <= 0)
             playerDeath();
     }
