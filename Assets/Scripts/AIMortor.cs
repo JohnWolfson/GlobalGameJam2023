@@ -68,6 +68,11 @@ public class AIMortor : MonoBehaviour
             lookPos.y = 0;
             transform.rotation = Quaternion.LookRotation(lookPos);
         }
+
+        if (mortarAnimator.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+        {
+            mortarAgent.isStopped = true;
+        }
     }
 
     public void PlayerSpotted(){
@@ -112,5 +117,10 @@ public class AIMortor : MonoBehaviour
             encounterManager.coveringFireActors.RemoveListener(GiveCoveringFire);
             mortarAnimator.SetTrigger("Died");
         }
+    }
+
+    public void MortarDie(){
+        Destroy(this.gameObject);
+        Instantiate(corpse, transform.position, transform.rotation);
     }
 }

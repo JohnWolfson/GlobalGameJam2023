@@ -69,6 +69,11 @@ public class AIGunner : MonoBehaviour
             lookPos.y = 0;
             transform.rotation = Quaternion.LookRotation(lookPos);
         }
+
+        if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+        {
+            gunnerAgent.isStopped = true;
+        }
     }
 
     public void PlayerSpotted(){
@@ -108,5 +113,10 @@ public class AIGunner : MonoBehaviour
             encounterManager.coveringFireActors.RemoveListener(GiveCoveringFire);
             gunnerAnimator.SetTrigger("Died");
         }
+    }
+
+    public void GunnerDie(){
+        Destroy(this.gameObject);
+        Instantiate(corpse, transform.position, transform.rotation);
     }
 }
