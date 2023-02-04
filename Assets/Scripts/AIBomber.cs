@@ -11,6 +11,7 @@ public class AIBomber : MonoBehaviour
     public NavMeshAgent bomberAgent;
     public GameObject explosion;
     public float explodeDistance = 2.0f;
+    public int health = 50;
     bool ActorTriggered = false;
 
     // Start is called before the first frame update
@@ -54,6 +55,10 @@ public class AIBomber : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
-        
+        health -= damage;
+        if(health <= 0){
+            encounterManager.playerSpottedActors.RemoveListener(PlayerSpotted);
+            BomberExplode();
+        }
     }
 }

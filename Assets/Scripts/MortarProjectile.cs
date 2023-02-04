@@ -55,7 +55,7 @@ public class MortarProjectile : MonoBehaviour
         if(other.transform != this.transform && other.transform.tag != "Plane"){
             Debug.Log("Missile stuck object " + other);
             Destroy(this.gameObject);
-            Instantiate(explosion, this.transform.position, this.transform.rotation);
+            Instantiate(explosion, this.transform.position, Quaternion.identity);
         }
     }
 }
