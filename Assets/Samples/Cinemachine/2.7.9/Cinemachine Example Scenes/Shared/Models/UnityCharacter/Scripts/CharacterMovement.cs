@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Cinemachine.Examples
 {
@@ -6,6 +8,7 @@ namespace Cinemachine.Examples
 [AddComponentMenu("")] // Don't display in add component menu
 public class CharacterMovement : MonoBehaviour
 {
+    /*
     public bool useCharacterForward = false;
     public bool lockToCameraForward = false;
     public float turnSpeed = 10f;
@@ -22,6 +25,7 @@ public class CharacterMovement : MonoBehaviour
     private Quaternion freeRotation;
     private Camera mainCamera;
     private float velocity;
+    int isAimingParam = Animator.StringToHash("isAiming"); 
 
 	// Use this for initialization
 	void Start ()
@@ -29,6 +33,12 @@ public class CharacterMovement : MonoBehaviour
 	    anim = GetComponent<Animator>();
 	    mainCamera = Camera.main;
 	}
+
+    void Update()
+    {
+        bool isAiming = Input.GetMouseButton(1);
+        anim.SetBool(isAimingParam, isAiming); 
+    }
 
 	// Update is called once per frame
 	void FixedUpdate ()
@@ -106,7 +116,36 @@ public class CharacterMovement : MonoBehaviour
             var right = transform.TransformDirection(Vector3.right);
             targetDirection = input.x * right + Mathf.Abs(input.y) * forward;
         }
+    }*/
+    public CharacterController controller; 
+    public float mouseSens = 100f; 
+    public Transform playerBody; 
+    float xRotation = 0f; 
+    public float speed = 12f; 
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked; 
+    }
+
+    void Update()
+    {
+        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSens * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSens * Time.deltaTime;
+
+        xRotation -= mouseY; 
+        //transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.Rotate(Vector3.up * (mouseY + mouseX)); 
+        
+
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxisRaw("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z; 
+        controller.Move(move* speed * Time.deltaTime); 
     }
 }
+
+
 
 }
