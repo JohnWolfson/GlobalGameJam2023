@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Cinemachine.Examples
 {
@@ -22,6 +24,7 @@ public class CharacterMovement : MonoBehaviour
     private Quaternion freeRotation;
     private Camera mainCamera;
     private float velocity;
+    int isAimingParam = Animator.StringToHash("isAiming"); 
 
 	// Use this for initialization
 	void Start ()
@@ -29,6 +32,12 @@ public class CharacterMovement : MonoBehaviour
 	    anim = GetComponent<Animator>();
 	    mainCamera = Camera.main;
 	}
+
+    void Update()
+    {
+        bool isAiming = Input.GetMouseButton(1);
+        anim.SetBool(isAimingParam, isAiming); 
+    }
 
 	// Update is called once per frame
 	void FixedUpdate ()
