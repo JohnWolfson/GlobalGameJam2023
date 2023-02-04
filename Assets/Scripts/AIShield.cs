@@ -10,7 +10,7 @@ public class AIShield : MonoBehaviour
     public Animator shieldAnimator;
     public NavMeshAgent shieldAgent;
     public GameObject corpse;
-    public float spotDistance;
+    public float spotDistance = 15.0f;
     public Transform player;
     bool ActorTriggered = false;
 
