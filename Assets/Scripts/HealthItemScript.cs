@@ -12,6 +12,7 @@ public class HealthItemScript : MonoBehaviour
     public float ShrinkAmount; // The speed the object shrinks, 1 means it doesn't shrink and lower makes it grow;
     public int MaxParticles; // Maximum amount of particles emitted when item is consumed
     public int MinParticles; // Minimum amount of particles emitted when item is consumed
+    public float SelfDestructDelay; // The amount of time from the model being hiddem to the parent gameobject destroying itself
     private float timer;
 
     void Start()
@@ -62,7 +63,7 @@ public class HealthItemScript : MonoBehaviour
         int particlesNumber = Random.Range(MinParticles, MaxParticles);
         particles.transform.position = model.transform.position;
         particles.Emit(particlesNumber);
-        Invoke("destroySelf", 10f);
+        Invoke("destroySelf", SelfDestructDelay);
     }
 
     private void destroySelf()

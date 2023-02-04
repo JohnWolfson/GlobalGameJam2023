@@ -67,6 +67,7 @@ MonoBehaviour:
   ShrinkAmount: 1.025
   MaxParticles: 15
   MinParticles: 5
+  SelfDestructDelay: 10
 --- !u!1 &1271651118187318456
 GameObject:
   m_ObjectHideFlags: 0
