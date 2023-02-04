@@ -75,6 +75,24 @@ public class CharacterStats : MonoBehaviour
         CanFire = true;
     }
 
+    public bool RecoverHealth(int recovery)
+    {
+        if (HP >= MaxHP)
+            return false;
+        HP += recovery;
+        if (HP > MaxHP)
+            HP = MaxHP;
+        return true;
+
+        //HP += recovery;
+        //if (HP > MaxHP)
+        //{
+        //    HP = MaxHP;
+        //    return true;
+        //}
+        //return false;
+    }
+
     public void TakeDamage(int damage)
     {
         HP -= damage;
