@@ -14,6 +14,7 @@ public class CharacterStats : MonoBehaviour
     public int Ammo; // Player ammo count; 
     public int Damage; // Player damage per shot
     public float Accuracy; // The higher this is, the lower the accuracy
+    public int Keys; // The number of keys the player currently holds
     public bool CanFire; // If the player has finished the current firing animation to fire again
 
     [Header("UI")]
