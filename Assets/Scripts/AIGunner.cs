@@ -9,8 +9,11 @@ public class AIGunner : MonoBehaviour
     public EncounterManager encounterManager;
     public Animator gunnerAnimator;
     public NavMeshAgent gunnerAgent;
+    public ParticleSystem gunParticles;
     public GameObject corpse;
-    public float spotDistance;
+    public float spotDistance = 15.0f;
+    public bool forceGoToWaypointOnWake = true;
+    public Transform waypointToForce;
     Transform player;
     bool ActorTriggered = false;
 
@@ -20,6 +23,8 @@ public class AIGunner : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         encounterManager.playerSpottedActors.AddListener(PlayerSpotted);
         encounterManager.coveringFireActors.AddListener(GiveCoveringFire);
+        var emission = gunParticles.emission;
+        emission.enabled = false;
     }
 
     // Update is called once per frame
@@ -45,26 +50,54 @@ public class AIGunner : MonoBehaviour
         if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Running"))
         {
             gunnerAgent.isStopped = false;
+            if(Vector3.Distance(gunnerAgent.destination, transform.position) < 2){
+                gunnerAnimator.SetTrigger("Shooting");
+            }
         }
 
         if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("InCover"))
         {
             gunnerAgent.isStopped = true;
+            gunnerAnimator.ResetTrigger("Shooting");
         }
 
         if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Shooting"))
         {
             gunnerAgent.isStopped = true;
+            var lookPos = encounterManager.playerLastSeenPos - transform.position;
+            lookPos.y = 0;
+            transform.rotation = Quaternion.LookRotation(lookPos);
         }
     }
 
     public void PlayerSpotted(){
         ActorTriggered = true;
+        if(forceGoToWaypointOnWake){
+            gunnerAgent.SetDestination(waypointToForce.position);
+        }else{
+            var waypointChosen = Random.Range(0, encounterManager.waypoints.Length);
+            gunnerAgent.SetDestination(encounterManager.waypoints[waypointChosen].position);
+        }
         gunnerAnimator.SetTrigger("PlayerSpotted");
     }
 
-    public void GiveCoveringFire(){
+    public void GenerateWaypoint(){
+        var waypointChosen = Random.Range(0, encounterManager.waypoints.Length);
+        gunnerAgent.SetDestination(encounterManager.waypoints[waypointChosen].position);
+    }
 
+    public void StartShootingGun(){
+        var emission = gunParticles.emission;
+        emission.enabled = true;
+    }
+
+    public void StopShootingGun(){
+        var emission = gunParticles.emission;
+        emission.enabled = false;
+    }
+
+    public void GiveCoveringFire(){
+        gunnerAnimator.SetTrigger("CoveringFire");
     }
 
     public void TakeDamage(int damage){
