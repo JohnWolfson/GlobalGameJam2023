@@ -13,7 +13,7 @@ public class CharacterMovement : MonoBehaviour
     public KeyCode sprintKeyboard = KeyCode.Space;
 
     private float turnSpeedMultiplier;
-    private float speed = 0f;
+    public float speed = 0f;
     private float direction = 0f;
     private bool isSprinting = false;
     private Animator anim;
@@ -53,6 +53,15 @@ public class CharacterMovement : MonoBehaviour
 
         anim.SetFloat("Direction", direction);
 
+        if(velocity <= 0)
+        {
+            anim.SetBool("Moving", false);
+        }
+        else
+        {
+            anim.SetBool("Moving", true);
+        }
+        //add this to the moving bit in a if else, set to false when not moving 
         // set sprinting
 	    isSprinting = ((Input.GetKey(sprintJoystick) || Input.GetKey(sprintKeyboard)) && input != Vector2.zero && direction >= 0f);
         anim.SetBool("isSprinting", isSprinting);
