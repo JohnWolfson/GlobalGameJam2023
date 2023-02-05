@@ -9,6 +9,7 @@ public class CharacterStats : MonoBehaviour
     [Header("Mechanics")]
     public Camera MainCamera;
     public Animator animator;
+    public Animator deathAnimator;
     public GameObject Muzzle;
     public GameObject LineRendererObject;
     public ParticleSystem particles; // Particle System use for firing
@@ -124,5 +125,6 @@ public class CharacterStats : MonoBehaviour
     public void playerDeath()
     {
         Debug.Log("Player Dead!");
+        deathAnimator.SetTrigger("Die");
     }
 }
