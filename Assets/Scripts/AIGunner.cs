@@ -68,6 +68,9 @@ public class AIGunner : MonoBehaviour
             var lookPos = encounterManager.playerLastSeenPos - transform.position;
             lookPos.y = 0;
             transform.rotation = Quaternion.LookRotation(lookPos);
+
+            var aimPos = encounterManager.playerLastSeenPos - transform.position;
+            gunParticles.transform.rotation = Quaternion.LookRotation(aimPos);
         }
 
         if (gunnerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
