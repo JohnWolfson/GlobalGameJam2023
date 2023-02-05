@@ -8,6 +8,7 @@ TagManager:
   - AIGunner
   - AIShield
   - AIMortar
+  - Destructable
   layers:
   - Default
   - TransparentFX
