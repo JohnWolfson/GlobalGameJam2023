@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level 2 - Volcano.unity
     guid: e4ff9405b2130554c9809c3eb4634ac8
+  - enabled: 1
+    path: Assets/Scenes/Level End.unity
+    guid: 409d111dbc322854cbd022468401fce0
   m_configObjects: {}
