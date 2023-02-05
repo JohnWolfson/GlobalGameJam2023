@@ -16,7 +16,6 @@ public class CharacterStats : MonoBehaviour
     public float Accuracy; // The higher this is, the lower the accuracy
     public int Keys; // The number of keys the player currently holds
     public bool CanFire; // If the player has finished the current firing animation to fire again
-    public bool Fire;
 
     [Header("UI")]
     public Text AmmoText;
@@ -36,8 +35,6 @@ public class CharacterStats : MonoBehaviour
             CanFire = false;
             animator.SetTrigger("Fire");
         }
-        if (Fire)
-            fireWeapon();
     }
 
     #region UI
@@ -57,8 +54,6 @@ public class CharacterStats : MonoBehaviour
 
     private void fireWeapon()
     {
-        Debug.Log("Test Fire");
-        Fire = false;
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
         RaycastHit hit;
@@ -124,8 +119,8 @@ public class CharacterStats : MonoBehaviour
             playerDeath();
     }
 
-    private void playerDeath()
+    public void playerDeath()
     {
-
+        Debug.Log("Player Dead!");
     }
 }
