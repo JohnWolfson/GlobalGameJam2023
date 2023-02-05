@@ -9,6 +9,7 @@ public class CharacterStats : MonoBehaviour
     [Header("Mechanics")]
     public Camera MainCamera;
     public Animator animator;
+    public GameObject Muzzle;
     public GameObject LineRendererObject;
     public ParticleSystem particles; // Particle System use for firing
     public int MaxHP; // Player max health
@@ -60,8 +61,6 @@ public class CharacterStats : MonoBehaviour
         layerMask = ~layerMask;
         RaycastHit hit;
         Vector3 spreadVector = getSpreadVector();
-        //Debug.DrawRay(transform.position, spreadVector * 100, Color.red, 600);
-        //if (Physics.Raycast(transform.position, spreadVector, out hit, 10000f, layerMask))
         Debug.DrawRay(MainCamera.transform.position, spreadVector * 100, Color.red, 1800);
         if(Physics.Raycast(MainCamera.transform.position, spreadVector, out hit, 10000f, layerMask))
         {
@@ -80,9 +79,11 @@ public class CharacterStats : MonoBehaviour
                     hit.transform.gameObject.GetComponent<AIMortor>().TakeDamage(Damage);
                     break;
                 default:
-                    Debug.Log(this.gameObject.name + ": CharacterStats -> Raycast hit returned unrecognised tag: " + hit.transform.tag);
+                    Debug.Log(this.gameObject.name + ": CharacterStats -> Raycast hit returned unrecognised tag: " + hit.transform.tag + "      GameObject: " + hit.transform.gameObject.name);
                     break;
             }
+            var newLineRenderer = Instantiate(LineRendererObject, transform.position, Quaternion.identity);
+            newLineRenderer.GetComponent<ShootingLineRendererScript>().InitialiseLineRenderer(Muzzle.transform.position, hit.transform.position);
         }
         Ammo -= 1;
         updateAmmoText();

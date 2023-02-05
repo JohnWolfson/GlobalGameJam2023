@@ -140,5 +140,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4f073fa4f31d540ada9dd79b99e1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  Target: {x: 0, y: 0, z: 0}
+  Line: {fileID: 9083904951932659271}
+  TimeTillRemoved: 0.1

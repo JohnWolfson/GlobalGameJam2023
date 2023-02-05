@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class ShootingLineRendererScript : MonoBehaviour
 {
-    public GameObject Player;
-    public Vector3 Target;
+    public LineRenderer Line;
+    public float TimeTillRemoved;
+
+    public void InitialiseLineRenderer(Vector3 newLocation, Vector3 newTarget)
+    {
+        Vector3[] positions = new Vector3[2];
+        positions[0] = newLocation;
+        positions[1] = newTarget;
+        Line.SetPositions(positions);
+        Invoke("destroySelf", TimeTillRemoved);
+    }
+
+    private void destroySelf()
+    {
+        Destroy(this.gameObject);
+    }
 }
