@@ -14,26 +14,24 @@ public class CharacterStats : MonoBehaviour
     public ParticleSystem particles; // Particle System use for firing
     public int MaxHP; // Player max health
     public int HP; // Player current health
-    public int Ammo; // Player ammo count; 
     public int Damage; // Player damage per shot
     public float Accuracy; // The higher this is, the lower the accuracy
     public int Keys; // The number of keys the player currently holds
     public bool CanFire; // If the player has finished the current firing animation to fire again
 
     [Header("UI")]
-    public Text AmmoText;
+    public Text KeyText;
     public Image HealthBar;
 
     void Start()
     {
         CanFire = true;
-        updateAmmoText();
         updateHealthBar();
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && Ammo > 0 && CanFire)
+        if (Input.GetMouseButton(0) && CanFire)
         {
             CanFire = false;
             animator.SetTrigger("Fire");
@@ -42,9 +40,10 @@ public class CharacterStats : MonoBehaviour
 
     #region UI
 
-    private void updateAmmoText()
+    public void UpdateKeys(int num)
     {
-        AmmoText.text = "Ammo: " + Ammo;
+        Keys += num;
+        KeyText.text = "Keys: " + Keys;
     }
 
     private void updateHealthBar()
@@ -82,11 +81,9 @@ public class CharacterStats : MonoBehaviour
                     Debug.Log(this.gameObject.name + ": CharacterStats -> Raycast hit returned unrecognised tag: " + hit.transform.tag + "      GameObject: " + hit.transform.gameObject.name);
                     break;
             }
-            var newLineRenderer = Instantiate(LineRendererObject, transform.position, Quaternion.identity);
-            newLineRenderer.GetComponent<ShootingLineRendererScript>().InitialiseLineRenderer(Muzzle.transform.position, hit.transform.position);
+            //var newLineRenderer = Instantiate(LineRendererObject, transform.position, Quaternion.identity);
+            //newLineRenderer.GetComponent<ShootingLineRendererScript>().InitialiseLineRenderer(Muzzle.transform.position, hit.transform.position);
         }
-        Ammo -= 1;
-        updateAmmoText();
     }
 
     private Vector3 getSpreadVector()
