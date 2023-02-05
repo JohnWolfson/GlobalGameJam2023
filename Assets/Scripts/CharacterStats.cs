@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class CharacterStats : MonoBehaviour
 {
     [Header("Mechanics")]
+    public Camera MainCamera;
     public Animator animator;
+    public GameObject LineRendererObject;
     public ParticleSystem particles; // Particle System use for firing
     public int MaxHP; // Player max health
     public int HP; // Player current health
@@ -58,8 +60,10 @@ public class CharacterStats : MonoBehaviour
         layerMask = ~layerMask;
         RaycastHit hit;
         Vector3 spreadVector = getSpreadVector();
-        Debug.DrawRay(transform.position, spreadVector * 100, Color.red, 600);
-        if (Physics.Raycast(transform.position, spreadVector, out hit, 10000f, layerMask))
+        //Debug.DrawRay(transform.position, spreadVector * 100, Color.red, 600);
+        //if (Physics.Raycast(transform.position, spreadVector, out hit, 10000f, layerMask))
+        Debug.DrawRay(MainCamera.transform.position, spreadVector * 100, Color.red, 1800);
+        if(Physics.Raycast(MainCamera.transform.position, spreadVector, out hit, 10000f, layerMask))
         {
             switch (hit.transform.tag)
             {
@@ -91,7 +95,7 @@ public class CharacterStats : MonoBehaviour
         Quaternion ySpreadAngle = Quaternion.AngleAxis(yAngle, new Vector3(0, 1, 0));
         Quaternion xSpreadAngle = Quaternion.AngleAxis(xAngle, new Vector3(1, 0, 0));
         Quaternion totalSpreadAngle = xSpreadAngle * ySpreadAngle;
-        Vector3 newVector = totalSpreadAngle * transform.TransformDirection(Vector3.forward);
+        Vector3 newVector = totalSpreadAngle * MainCamera.transform.forward;
         return newVector;
     }
 
