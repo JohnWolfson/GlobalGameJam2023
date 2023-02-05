@@ -54,6 +54,7 @@ public class CharacterStats : MonoBehaviour
 
     private void fireWeapon()
     {
+        Debug.Log("Test Fire");
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
         RaycastHit hit;
@@ -107,6 +108,7 @@ public class CharacterStats : MonoBehaviour
         HP += recovery;
         if (HP > MaxHP)
             HP = MaxHP;
+        updateHealthBar();
         return true;
     }
 

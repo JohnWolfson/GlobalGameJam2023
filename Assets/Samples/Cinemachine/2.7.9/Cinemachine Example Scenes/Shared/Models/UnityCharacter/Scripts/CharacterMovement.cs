@@ -121,7 +121,10 @@ public class CharacterMovement : MonoBehaviour
     public float mouseSens = 100f; 
     public Transform playerBody; 
     float xRotation = 0f; 
-    public float speed = 12f; 
+    public float speed = 12f;
+    //public float MinLookUpAngle;
+    //public float MaxLookUpAngle;
+    private float yRotate = 0f;
 
     void Start()
     {
@@ -130,19 +133,26 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSens * Time.deltaTime;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSens * Time.deltaTime;
+            //float mouseX = Input.GetAxisRaw("Mouse X") * mouseSens * Time.deltaTime;
+            //////yRotate += Input.GetAxisRaw("Mouse Y") * mouseSens * Time.deltaTime;
+            //////yRotate = Mathf.Clamp(yRotate, MinLookUpAngle, MaxLookUpAngle);
+            //////transform.eulerAngles = new Vector3(yRotate, 0, 0);
 
-        xRotation -= mouseY; 
-        //transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * (mouseY + mouseX)); 
-        
+        //xRotation -= mouseY;
+            //transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            //playerBody.Rotate(Vector3.up * (mouseY + mouseX)); 
+
+            //playerBody.Rotate(Mathf.Clamp(Vector3.up * (mouseY + mouseX), -35f, 70f));
+
+
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z; 
         controller.Move(move* speed * Time.deltaTime); 
+
+
     }
 }
 

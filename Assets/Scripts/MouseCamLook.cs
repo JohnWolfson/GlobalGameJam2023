@@ -8,6 +8,8 @@ public class MouseCamLook : MonoBehaviour {
     public float sensitivity = 5.0f;
     [SerializeField]
     public float smoothing = 2.0f;
+    public float MinLookUpAngle;
+    public float MaxLookUpAngle;
     // the chacter is the capsule
     public GameObject character;
     // get the incremental value of mouse moving
@@ -28,8 +30,12 @@ public class MouseCamLook : MonoBehaviour {
         // the interpolated float result between the two float values
         smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
         smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
+
+        //smoothV.x = Mathf.Clamp(Mathf.Lerp(smoothV.y, md.y, 1f / smoothing), -35f, 70f);
+
         // incrementally add to the camera look
         mouseLook += smoothV;
+        mouseLook = new Vector2(mouseLook.x, Mathf.Clamp(mouseLook.y, MinLookUpAngle, MaxLookUpAngle));
 
         // vector3.right means the x-axis
         transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
