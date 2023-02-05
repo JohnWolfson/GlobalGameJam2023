@@ -95,7 +95,7 @@ public class CharacterStats : MonoBehaviour
         return newVector;
     }
 
-    private void SetCanFire()
+    public void SetCanFire()
     {
         CanFire = true;
     }
