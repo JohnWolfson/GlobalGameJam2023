@@ -8,7 +8,7 @@ public class KeyScript : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterStats>().Keys += 1;
+            other.gameObject.GetComponent<CharacterStats>().UpdateKeys(1);
             Destroy(this.gameObject);
         }
     }

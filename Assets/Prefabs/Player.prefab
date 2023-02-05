@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 4011698089414230049}
   - component: {fileID: 4011698089414230062}
   - component: {fileID: 2115780588}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -709,7 +709,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7410f288ee07b6d438137a0b1fd5185c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
   animator: {fileID: 4011698089414230049}
+  Muzzle: {fileID: 4939753066908567223}
+  LineRendererObject: {fileID: 23669832299691567, guid: e03424c44d3de57439f1fb79a6e25d2c,
+    type: 3}
   particles: {fileID: 0}
   MaxHP: 100
   HP: 100
@@ -877,7 +881,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4894795, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1894,6 +1898,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89fdc7dd5d189c248a8342c2e61ef457, type: 3}
+--- !u!1 &4939753066908567223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 89fdc7dd5d189c248a8342c2e61ef457,
+    type: 3}
+  m_PrefabInstance: {fileID: 4011698089742311358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8275046448533189796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 89fdc7dd5d189c248a8342c2e61ef457,

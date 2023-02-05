@@ -7,30 +7,31 @@ using UnityEngine.UI;
 public class CharacterStats : MonoBehaviour
 {
     [Header("Mechanics")]
+    public Camera MainCamera;
     public Animator animator;
+    public GameObject Muzzle;
+    public GameObject LineRendererObject;
     public ParticleSystem particles; // Particle System use for firing
     public int MaxHP; // Player max health
     public int HP; // Player current health
-    public int Ammo; // Player ammo count; 
     public int Damage; // Player damage per shot
     public float Accuracy; // The higher this is, the lower the accuracy
     public int Keys; // The number of keys the player currently holds
     public bool CanFire; // If the player has finished the current firing animation to fire again
 
     [Header("UI")]
-    public Text AmmoText;
+    public Text KeyText;
     public Image HealthBar;
 
     void Start()
     {
         CanFire = true;
-        updateAmmoText();
         updateHealthBar();
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && Ammo > 0 && CanFire)
+        if (Input.GetMouseButton(0) && CanFire)
         {
             CanFire = false;
             animator.SetTrigger("Fire");
@@ -39,9 +40,10 @@ public class CharacterStats : MonoBehaviour
 
     #region UI
 
-    private void updateAmmoText()
+    public void UpdateKeys(int num)
     {
-        AmmoText.text = "Ammo: " + Ammo;
+        Keys += num;
+        KeyText.text = "Keys: " + Keys;
     }
 
     private void updateHealthBar()
@@ -58,8 +60,8 @@ public class CharacterStats : MonoBehaviour
         layerMask = ~layerMask;
         RaycastHit hit;
         Vector3 spreadVector = getSpreadVector();
-        Debug.DrawRay(transform.position, spreadVector * 100, Color.red, 600);
-        if (Physics.Raycast(transform.position, spreadVector, out hit, 10000f, layerMask))
+        Debug.DrawRay(MainCamera.transform.position, spreadVector * 100, Color.red, 1800);
+        if(Physics.Raycast(MainCamera.transform.position, spreadVector, out hit, 10000f, layerMask))
         {
             switch (hit.transform.tag)
             {
@@ -76,12 +78,12 @@ public class CharacterStats : MonoBehaviour
                     hit.transform.gameObject.GetComponent<AIMortor>().TakeDamage(Damage);
                     break;
                 default:
-                    Debug.Log(this.gameObject.name + ": CharacterStats -> Raycast hit returned unrecognised tag: " + hit.transform.tag);
+                    Debug.Log(this.gameObject.name + ": CharacterStats -> Raycast hit returned unrecognised tag: " + hit.transform.tag + "      GameObject: " + hit.transform.gameObject.name);
                     break;
             }
+            //var newLineRenderer = Instantiate(LineRendererObject, transform.position, Quaternion.identity);
+            //newLineRenderer.GetComponent<ShootingLineRendererScript>().InitialiseLineRenderer(Muzzle.transform.position, hit.transform.position);
         }
-        Ammo -= 1;
-        updateAmmoText();
     }
 
     private Vector3 getSpreadVector()
@@ -91,7 +93,7 @@ public class CharacterStats : MonoBehaviour
         Quaternion ySpreadAngle = Quaternion.AngleAxis(yAngle, new Vector3(0, 1, 0));
         Quaternion xSpreadAngle = Quaternion.AngleAxis(xAngle, new Vector3(1, 0, 0));
         Quaternion totalSpreadAngle = xSpreadAngle * ySpreadAngle;
-        Vector3 newVector = totalSpreadAngle * transform.TransformDirection(Vector3.forward);
+        Vector3 newVector = totalSpreadAngle * MainCamera.transform.forward;
         return newVector;
     }
 
