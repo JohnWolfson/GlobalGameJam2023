@@ -9,6 +9,7 @@ public class LoadLevel2 : MonoBehaviour
     public GameObject Player;
     public GameObject Gate;
     public GameObject Position;
+    public GameObject WillsGameObject;
     public float Speed;
     public float Timer;
     private float t;
@@ -24,7 +25,7 @@ public class LoadLevel2 : MonoBehaviour
     {
         if(other.transform.tag == "Player" && Gate.GetComponent<GateScript>().Open)
         {
-            t = Timer;
+            WillsGameObject.SetActive(true); ;
             Invoke("EndOfLevel1", WaitTime);
         }
     }
