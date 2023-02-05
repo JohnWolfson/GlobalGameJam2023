@@ -10,6 +10,8 @@ public class LoadLevel2 : MonoBehaviour
     public GameObject Gate;
     public GameObject Position;
     public float Speed;
+    public float Timer;
+    private float t;
     private Camera MainCamera;
     private bool moveCamera;
 
@@ -22,6 +24,7 @@ public class LoadLevel2 : MonoBehaviour
     {
         if(other.transform.tag == "Player" && Gate.GetComponent<GateScript>().Open)
         {
+            t = Timer;
             Invoke("EndOfLevel1", WaitTime);
         }
     }
@@ -41,17 +44,23 @@ public class LoadLevel2 : MonoBehaviour
 
     void Update()
     {
-        if (fade)
+        if (fade && !loading)
         {
-            Color newColour = Black.material.color;
-            newColour.a += Speed;
-            if(newColour.a > 255)
-                newColour.a = 255;
-            Black.material.color = newColour;
-            if(newColour.a >= 255 && !loading)
+            Timer -= Time.deltaTime;
+            if (Timer <= 0)
             {
-                loading = true;
-                SceneManager.LoadScene("Level 2 - Volcano", LoadSceneMode.Single);
+                Timer = t;
+                Color newColour = Black.color;
+                newColour.a += Speed;
+                if (newColour.a > 255)
+                    newColour.a = 255;
+                Black.color = newColour;
+                Debug.Log("Alpha: " + Black.material.color);
+                if (newColour.a >= 255 && !loading)
+                {
+                    loading = true;
+                    SceneManager.LoadScene("Level 2 - Volcano", LoadSceneMode.Single);
+                }
             }
         }
 
