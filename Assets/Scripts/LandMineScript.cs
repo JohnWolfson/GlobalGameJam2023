@@ -4,28 +4,34 @@ using UnityEngine;
 
 public class LandMineScript : MonoBehaviour
 {
-    public GameObject prefab; // The gameobject to instantiate
+    public GameObject Model;
+    public ParticleSystem Particles;
     public Light MineLight; // The light object inside the mine
-    public float InstantiateDelay; // The amount of time from player being detected to the prefab being instantiated
+    public float Range;
+    public int Damage; // Amount of damage dealt to the player
+    public float DetonateDelay; // The amount of time between the player being detected and the min exploding
     public float SelfDestructDelay; // The amount of time from the model being hiddem to the parent gameobject destroying itself
-    public bool InstantiateAsChild; // If true, the instianted object will be made a child of this object and destroyed with it when it self destructs
     public bool PlayerDetected;
+    private GameObject player;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Player" && !PlayerDetected)
         {
             PlayerDetected = true;
+            player = other.gameObject;
             MineLight.GetComponent<LandMineLight>().Alarmed = true;
-            Invoke("instantiatePrefab", InstantiateDelay);
+            Invoke("detonate", DetonateDelay);
         }
     }
 
-    private void instantiatePrefab()
+    private void detonate()
     {
-        GameObject newObject = Instantiate(prefab, transform.position, Quaternion.identity);
-        if (InstantiateAsChild)
-            newObject.transform.SetParent(this.gameObject.transform);
+        Model.SetActive(false);
+        Particles.gameObject.SetActive(true);
+        float playerDistance = Vector3.Distance(transform.position, player.transform.position);
+        if(playerDistance <= Range)    
+            player.GetComponent<CharacterStats>().TakeDamage(Damage);
         Invoke("destroySelf", SelfDestructDelay);
     }
 
