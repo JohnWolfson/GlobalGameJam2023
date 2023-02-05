@@ -31,7 +31,8 @@ public class LoadLevel2 : MonoBehaviour
 
     private void EndOfLevel1()
     {
-        fade = true;
+        SceneManager.LoadScene("Level 2 - Volcano", LoadSceneMode.Single);
+        //fade = true;
     }
 
     //public void EndOfLevel1()
@@ -42,30 +43,30 @@ public class LoadLevel2 : MonoBehaviour
     //    moveCamera = true;
     //}
 
-    void Update()
-    {
-        if (fade && !loading)
-        {
-            Timer -= Time.deltaTime;
-            if (Timer <= 0)
-            {
-                Timer = t;
-                Color newColour = Black.color;
-                newColour.a += Speed;
-                if (newColour.a > 255)
-                    newColour.a = 255;
-                Black.color = newColour;
-                Debug.Log("Alpha: " + Black.material.color);
-                if (newColour.a >= 255 && !loading)
-                {
-                    loading = true;
-                    SceneManager.LoadScene("Level 2 - Volcano", LoadSceneMode.Single);
-                }
-            }
-        }
+    //void Update()
+    //{
+    //    if (fade && !loading)
+    //    {
+    //        Timer -= Time.deltaTime;
+    //        if (Timer <= 0)
+    //        {
+    //            Timer = t;
+    //            Color newColour = Black.color;
+    //            newColour.a += Speed;
+    //            if (newColour.a > 255)
+    //                newColour.a = 255;
+    //            Black.color = newColour;
+    //            Debug.Log("Alpha: " + Black.material.color);
+    //            if (newColour.a >= 255 && !loading)
+    //            {
+    //                loading = true;
+    //                SceneManager.LoadScene("Level 2 - Volcano", LoadSceneMode.Single);
+    //            }
+    //        }
+    //    }
 
 
-        //if (moveCamera)
-        //    MainCamera.transform.position = Vector3.MoveTowards(MainCamera.transform.position, Position.transform.position, Speed * Time.deltaTime);
-    }
+    //    //if (moveCamera)
+    //    //    MainCamera.transform.position = Vector3.MoveTowards(MainCamera.transform.position, Position.transform.position, Speed * Time.deltaTime);
+    //}
 }

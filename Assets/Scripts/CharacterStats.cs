@@ -25,6 +25,7 @@ public class CharacterStats : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
         CanFire = true;
         updateHealthBar();
     }
