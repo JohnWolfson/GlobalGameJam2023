@@ -79,6 +79,9 @@ public class CharacterStats : MonoBehaviour
                 case "AIMortar":
                     hit.transform.gameObject.GetComponent<AIMortor>().TakeDamage(Damage);
                     break;
+                case "Destructable":
+                    hit.transform.gameObject.GetComponent<DestructableObject>().TakeDamage(Damage);
+                    break;
                 default:
                     Debug.Log(this.gameObject.name + ": CharacterStats -> Raycast hit returned unrecognised tag: " + hit.transform.tag + "      GameObject: " + hit.transform.gameObject.name);
                     break;
